@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
-import { useState } from "react";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {
