@@ -133,13 +133,8 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
-                {order.isPaid ? (
-                  <Message variant="success">Paid on {order.paidAt}</Message>
-                ) : (
-                  <Message variant="danger">Not Paid</Message>
-                )}
-              </ListGroup.Item>
+              {/* PAY ORDER PLACEHOLDER */}
+              {/* MARK AS DELIVERED PLACEHOLDER */}
             </ListGroup>
           </Card>
         </Col>
