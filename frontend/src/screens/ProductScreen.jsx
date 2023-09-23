@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   Row,
   Col,
@@ -10,16 +10,15 @@ import {
   Card,
   Button,
   Form,
-} from "react-bootstrap";
-import Rating from "../components/Rating";
-import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
-import { addToCart } from "../slices/cartSlice";
+} from 'react-bootstrap';
+import Rating from '../components/Rating';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import { addToCart } from '../slices/cartSlice';
 
 const ProductScreen = () => {
   const { id: productid } = useParams();
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 
@@ -83,8 +82,8 @@ const ProductScreen = () => {
                       <Col>
                         <strong>
                           {product.countInStock > 0
-                            ? "In Stock"
-                            : "Out of Stock"}
+                            ? 'In Stock'
+                            : 'Out of Stock'}
                         </strong>
                       </Col>
                     </Row>
