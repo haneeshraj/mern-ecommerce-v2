@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
@@ -54,11 +52,11 @@ const OrderListScreen = () => {
                   )}
                 </td>
                 <td>
-                  <Link to={`/order/${order._id}`}>
+                  <LinkContainer to={`/order/${order._id}`}>
                     <Button variant="light" className="btn-sm">
                       Details
                     </Button>
-                  </Link>
+                  </LinkContainer>
                 </td>
               </tr>
             ))}
