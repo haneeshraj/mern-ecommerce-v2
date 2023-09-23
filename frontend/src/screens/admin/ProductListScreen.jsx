@@ -9,13 +9,15 @@ import Loader from '../../components/Loader';
 import {
   useGetProductsQuery,
   useDeleteProductMutation,
+  useCreateProductMutation,
 } from '../../slices/productsApiSlice';
 
 const ProductListScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const [createProduct, { isLoading: loadingCreate }] =
+    useCreateProductMutation();
 
-  const [deleteProduct, { isLoading: loadingDelete }] =
-    useDeleteProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
 
   async function deleteHandler(id) {
     console.log(id);
@@ -25,6 +27,19 @@ const ProductListScreen = () => {
     toast.success('Product Deleted');
   }
 
+  async function createProductHandler() {
+    if (window.confirm('Are you sure you want to create a new product?')) {
+      try {
+        await createProduct();
+        refetch();
+        toast.success('Product Created');
+      } catch (err) {
+        console.error(err);
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  }
+
   return (
     <>
       <Row className="align-items-center">
@@ -32,14 +47,13 @@ const ProductListScreen = () => {
           <h1>Products</h1>
         </Col>
         <Col className="text-end">
-          <LinkContainer to="/admin/product/create">
-            <Button className="btn my-3">
-              <FaPlus />
-              Create Product
-            </Button>
-          </LinkContainer>
+          <Button className="btn my-3" onClick={createProductHandler}>
+            <FaPlus />
+            Create Product
+          </Button>
         </Col>
       </Row>
+      {loadingCreate && <Loader />}
 
       {isLoading ? (
         <Loader />
