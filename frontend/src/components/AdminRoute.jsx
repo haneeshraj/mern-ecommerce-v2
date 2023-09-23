@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const PrivateRoute = () => {
+const AdminRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
   return userInfo && userInfo.isAdmin ? (
     <Outlet />
@@ -9,4 +9,4 @@ const PrivateRoute = () => {
     <Navigate to="/login" replace />
   );
 };
-export default PrivateRoute;
+export default AdminRoute;

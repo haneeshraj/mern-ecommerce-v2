@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
-import { LinkContainer } from "react-router-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { useLogoutMutation } from "../slices/usersApiSlice";
-import { logout } from "../slices/authSlice";
-import logo from "../assets/logo.png";
+import { useNavigate } from 'react-router-dom';
+import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { LinkContainer } from 'react-router-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { logout } from '../slices/authSlice';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart); // cart is whatever you mentioned in store
@@ -20,7 +20,7 @@ const Header = () => {
     try {
       await logoutApiCal().unwrap(); // removing the cookie in server
       dispatch(logout()); // removing the localstorage in client
-      navigate("/login");
+      navigate('/login');
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +44,7 @@ const Header = () => {
                   <FaShoppingCart />
                   Cart
                   {cartItems.length > 0 && (
-                    <Badge pill style={{ marginLeft: "5px" }} bg="success">
+                    <Badge pill style={{ marginLeft: '5px' }} bg="success">
                       {cartItems.reduce(
                         (acc, c) => Number(acc) + Number(c.qty),
                         0
@@ -69,6 +69,21 @@ const Header = () => {
                     Sign In
                   </Nav.Link>
                 </LinkContainer>
+              )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" id="adminmenu">
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to="/admin/productlist">
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to="/admin/orderlist">
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>
