@@ -20,9 +20,7 @@ const ProductListScreen = () => {
   const [deleteProduct] = useDeleteProductMutation();
 
   async function deleteHandler(id) {
-    console.log(id);
     const res = await deleteProduct(id);
-    console.log(res);
     refetch();
     toast.success('Product Deleted');
   }
