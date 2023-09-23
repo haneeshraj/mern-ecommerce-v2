@@ -1,16 +1,29 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
-import { FaTimes, FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { useGetProductsQuery } from '../../slices/productsApiSlice';
+import {
+  useGetProductsQuery,
+  useDeleteProductMutation,
+} from '../../slices/productsApiSlice';
 
 const ProductListScreen = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
 
-  function deleteHandler(id) {}
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation();
+
+  async function deleteHandler(id) {
+    console.log(id);
+    const res = await deleteProduct(id);
+    console.log(res);
+    refetch();
+    toast.success('Product Deleted');
+  }
 
   return (
     <>

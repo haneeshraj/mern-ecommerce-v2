@@ -1,14 +1,15 @@
-import express from "express";
+import express from 'express';
 
 import {
+  deleteProductById,
   getProductById,
   getProducts,
-} from "../controllers/productController.js";
+} from '../controllers/productController.js';
 
 const router = express.Router();
 
-router.get("/", getProducts);
+router.get('/', getProducts);
 
-router.get("/:id", getProductById);
+router.route('/:id').get(getProductById).delete(deleteProductById);
 
 export default router;
