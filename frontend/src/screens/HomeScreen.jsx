@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 
 import Product from '../components/Product';
@@ -8,10 +8,8 @@ import { useGetProductsQuery } from '../slices/productsApiSlice';
 const HomeScreen = () => {
   const [searchParams] = useSearchParams();
 
-  const pageNumber = searchParams.get('page');
-  const keyword = searchParams.get('search');
-
-  console.log(keyword, pageNumber);
+  const pageNumber = searchParams.get('page') || 1;
+  const keyword = searchParams.get('search') || '';
 
   const { data, isLoading, error } = useGetProductsQuery({
     pageNumber,
@@ -20,6 +18,11 @@ const HomeScreen = () => {
 
   return (
     <>
+      {keyword && (
+        <Link to="/" className="btn btn-light my-3">
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <h2>Loading..</h2>
       ) : error ? (
