@@ -1,8 +1,9 @@
 import { Row, Col } from 'react-bootstrap';
 import { Link, useSearchParams } from 'react-router-dom';
-import Paginate from '../components/Paginate';
 
+import Paginate from '../components/Paginate';
 import Product from '../components/Product';
+import ProductCarousel from '../components/ProductCarousel';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 
 const HomeScreen = () => {
@@ -18,7 +19,9 @@ const HomeScreen = () => {
 
   return (
     <>
-      {keyword && (
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
         <Link to="/" className="btn btn-light my-3">
           Go Back
         </Link>
