@@ -34,8 +34,7 @@ const ProductEditScreen = () => {
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation();
 
-  const [uploadProductImage, { isLoading: loadingImage }] =
-    useUploadProductImageMutation();
+  const [uploadProductImage] = useUploadProductImageMutation();
 
   useEffect(() => {
     if (product) {
