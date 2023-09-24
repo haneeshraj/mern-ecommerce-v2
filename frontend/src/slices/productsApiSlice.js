@@ -4,14 +4,21 @@ import { apiSlice } from './apiSlice';
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({ url: PRODUCTS_URL }),
+      query: ({ pageNumber }) => ({
+        url: PRODUCTS_URL,
+        params: {
+          pageNumber,
+        },
+      }),
       keepUnusedDataFor: 5,
-      providesTags: ['Products'], // For query caching,  it doesnt save the cache
+      providesTags: ['Product'], // For query caching,  it doesnt save the cache
     }),
+
     getProductDetails: builder.query({
       query: (id) => ({ url: `${PRODUCTS_URL}/${id}` }),
       keepUnusedDataFor: 5,
     }),
+
     deleteProduct: builder.mutation({
       query: (id) => ({ url: `${PRODUCTS_URL}/${id}`, method: 'DELETE' }),
     }),
