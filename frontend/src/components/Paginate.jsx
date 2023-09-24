@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
-const Paginate = ({ pages, page, isAdmin = false }) => {
+const Paginate = ({ pages, page, isAdmin = false, search = '' }) => {
   const navigate = useNavigate();
 
   const onClickHandler = (pageNumber) => {
     if (!isAdmin) {
-      navigate(`/?pageNumber=${pageNumber}`);
+      navigate(`/?page=${pageNumber}` + (search ? `&search=${search}` : ``));
     } else {
-      navigate(`/admin/productlist?pageNumber=${pageNumber}`);
+      navigate(`/admin/productlist?page=${pageNumber}`);
     }
   };
 

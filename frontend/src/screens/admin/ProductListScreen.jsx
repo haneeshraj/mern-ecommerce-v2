@@ -16,7 +16,7 @@ import Paginate from '../../components/Paginate';
 
 const ProductListScreen = () => {
   const [searchParams] = useSearchParams();
-  const pageNumber = searchParams.get('pageNumber');
+  const pageNumber = searchParams.get('page');
 
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
