@@ -6,7 +6,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     getProducts: builder.query({
       query: () => ({ url: PRODUCTS_URL }),
       keepUnusedDataFor: 5,
-      providesTags: ['Products'],
+      providesTags: ['Products'], // For query caching,  it doesnt save the cache
     }),
     getProductDetails: builder.query({
       query: (id) => ({ url: `${PRODUCTS_URL}/${id}` }),
@@ -21,7 +21,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         url: PRODUCTS_URL,
         method: 'POST',
       }),
-      invalidatesTags: ['Product'],
+      invalidatesTags: ['Product'], // for mutation caching, it doesnt save the cache
     }),
 
     updateProduct: builder.mutation({

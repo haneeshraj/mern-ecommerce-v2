@@ -41,7 +41,7 @@ const OrderListScreen = () => {
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <FaTimes style={{ color: 'red' }}></FaTimes>
                   )}
                 </td>
                 <td>
